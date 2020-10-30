@@ -100,7 +100,7 @@ bool HashTable<KeyT,ValueT>::Remove(KeyT && key){
     using namespace std;
     int index = _get_index(forward<KeyT>(key));
     set<Element<KeyT,ValueT>> & buf = vec[index];
-    auto it = buf.find(forward<KeyT>(key));
+    auto it = buf.find(Element<KeyT,ValueT>(forward<KeyT>(key),ValueT()));
     if(it==buf.end())
         return false;
     buf.erase(it);

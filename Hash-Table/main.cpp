@@ -10,7 +10,7 @@ int main(){
     auto hash = HashTable<int,string>(60,[](int && n){return n;});
 
     for(int i = 0;i<100;i++){
-        hash[std::move(i)] = to_string(i)+char(i%25+65);
+        hash[i] = to_string(i)+char(i%25+65);
     }
 
     hash[1234] = "I will added to hash table and deleted then!";

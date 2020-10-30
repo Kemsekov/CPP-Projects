@@ -30,7 +30,7 @@ class HashTable{
 
     //returns value that assigned to key, if there is no such a key in the table, then creates a new key / value element in table
     //Can be used as Add(key,value) function : hashTable[key] = value;
-    ValueT & operator[](KeyT && key);
+    ValueT & operator[](KeyT key);
 
     //if successfully added, then return true. If element with this key already existing in table,
     //then return false
@@ -84,7 +84,7 @@ bool HashTable<KeyT,ValueT>::Add(KeyT && key,ValueT && value){
 }
 
 template<typename KeyT, typename ValueT>
-ValueT & HashTable<KeyT,ValueT>::operator[](KeyT && key){
+ValueT & HashTable<KeyT,ValueT>::operator[](KeyT key){
     ValueT* buf = _get_value(std::forward<KeyT>(key));
     if(buf==0){
         auto it = _add(std::forward<KeyT>(key),ValueT()).first;

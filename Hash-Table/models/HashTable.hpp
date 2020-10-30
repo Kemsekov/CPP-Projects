@@ -62,13 +62,10 @@ ValueT* HashTable<KeyT,ValueT>::_get_value(KeyT && key){
     using namespace std;
     int index = _get_index(forward<KeyT>(key));
     set<Element<KeyT,ValueT>> & buf = vec[index];
-
-    //implace with buf.find
-    for(auto el = buf.begin();el!=buf.end();++el){
-        if(el.operator*().Key==forward<KeyT>(key))
-        return &el.operator*().Value;
-    }
+    typename set<Element<KeyT,ValueT>>::iterator it = buf.find(Element<KeyT,ValueT>(forward<KeyT>(key),ValueT()));
+    if(it==buf.end())
     return 0;
+    return &it.operator*().Value;
 }
 
 template<typename KeyT, typename ValueT>

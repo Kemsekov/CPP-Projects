@@ -120,7 +120,7 @@ class HashTable<KeyT,ValueT>::iterator{
     public:
     iterator(std::vector<std::set<Element<KeyT,ValueT>>>* vect,typename std::vector<std::set<Element<KeyT,ValueT>>>::iterator vec_iter,typename std::set<Element<KeyT,ValueT>>::iterator set_iter)
     : vec(*vect), vec_it(vec_iter), set_it(set_iter){}
-    
+
     const Element<KeyT,ValueT>& operator*(){
         return *(&set_it.operator*());
     }
@@ -137,8 +137,6 @@ class HashTable<KeyT,ValueT>::iterator{
             return *this;
         }
     }
-
-
 
     bool operator==(typename HashTable<KeyT,ValueT>::iterator it){
         return set_it==it.set_it;

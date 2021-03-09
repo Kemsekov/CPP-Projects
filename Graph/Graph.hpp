@@ -19,7 +19,6 @@ class Node{
 };
 
 
-
 template<typename T>
 class Graph
 {
@@ -31,6 +30,7 @@ class Graph
     Graph(){};
     void AddNewNode(T && value);
     void AddExistingNode(std::weak_ptr<Graph<T>> && node);
+    void AddExistingNode(shared_weak_ptr<Graph<T>> && node);
     iterator begin();
     iterator end();
 };
@@ -52,6 +52,13 @@ void Graph<T>::AddExistingNode(std::weak_ptr<Graph<T>> && node)
 {
     using namespace std;
     Nodes.push_back(forward<weak_ptr<Graph<T>>>(node));
+}
+
+template<typename T>
+void Graph<T>::AddExistingNode(shared_weak_ptr<Graph<T>> && node) 
+{
+    using namespace std;
+    Nodes.push_back(forward<shared_weak_ptr<Graph<T>>>(node));
 }
 
 template<typename T>
